@@ -1,6 +1,10 @@
 # file: .github/workflows/do-tests.yml
 name: do-tests
-on: push
+on:
+
+  - push
+  - pull_request
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -8,7 +12,11 @@ jobs:
     steps:
       # Клонируем репозиторий
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
       - run: make setup
-      - run: make test
+      - run: make tests
       - run: make lint
+
+      - name: Print Hello from Hexlet
+        uses: hexlet-components/hello-from-hexlet-action@release
 
