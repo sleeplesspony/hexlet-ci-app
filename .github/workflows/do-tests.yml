@@ -1,0 +1,14 @@
+# file: .github/workflows/do-tests.yml
+name: do-tests
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Клонируем репозиторий
+      - uses: actions/checkout@v4
+      - run: make setup
+      - run: make test
+      - run: make lint
+
